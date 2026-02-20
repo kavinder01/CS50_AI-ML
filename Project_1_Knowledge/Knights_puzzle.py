@@ -1,6 +1,6 @@
-from logic import *
+from knights_logic import *
 
-from Project_1_knowledge.knights_logic import Not, And, Implication, Or
+
 
 AKnight = Symbol("A is a Knight")
 AKnave = Symbol("A is a Knave")
