@@ -108,7 +108,7 @@ def get_model():
         metrics=["accuracy"]
     )
     return model
-
+"Here model have different layers of image filters , model is not yet trained "
 
 
 
