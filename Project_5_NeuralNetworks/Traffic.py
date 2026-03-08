@@ -60,29 +60,26 @@ def load_data(data_dir):
     be a list of integer labels, representing the categories for each of the
     corresponding `images`.
     """
-
     images = []
     labels = []
 
-    for category in os.listdir(data_dir):
-        category_path = os.path.join(data_dir, category)
+    for category in range(NUM_CATEGORIES):
+        folder = os.path.join(data_dir, str(category))
 
-        if not os.path.isdir(category_path):
-            continue
+        for file in os.listdir(folder):
+            path = os.path.join(folder, file)
 
-        for filename in os.listdir(category_path):
-            file_path = os.path.join(category_path, filename)
+            img = cv2.imread(path)
 
-            if not os.path.isfile(file_path):
+            if img is None:
                 continue
-            img = Image.open(file_path)
-            img = img.convert("RGB")
-            img = img.resize((IMG_WIDTH, IMG_HEIGHT))
-            img = np.array(img)
-            images.append(img)
-            labels.append(int(category))
 
-    return np.array(images), np.array(labels)
+            img = cv2.resize(img, (IMG_WIDTH, IMG_HEIGHT))
+
+            images.append(img)
+            labels.append(category)
+
+    return images, labels
 
 
 
